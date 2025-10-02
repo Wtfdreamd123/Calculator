@@ -1,0 +1,241 @@
+/* styles.css */
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e3c72, #2a5298); /* Stylish awesome background, same for both themes */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    transition: color 0.3s, background-color 0.3s;
+}
+.theme-toggle {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    transition: background-color 0.3s, color 0.3s;
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+body.dark .theme-toggle {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #fff;
+}
+.calculator {
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    opacity: 0;
+    transform: scale(0.5) rotate(-10deg);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    max-width: 300px;
+    width: 100%;
+}
+.display-container {
+    position: relative;
+}
+.display {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 20px;
+    text-align: right;
+    font-size: 2em;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.history {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    font-size: 0.8em;
+    color: inherit;
+    opacity: 0.7;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+button {
+    height: 60px;
+    font-size: 1.5em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+    outline: none;
+    opacity: 0;
+    transform: translateY(50px) rotate(360deg);
+    transition: opacity 0.5s ease, transform 0.5s ease, background-color 0.2s, box-shadow 0.3s;
+}
+button:hover {
+    animation: button-hover 0.6s ease-in-out;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+button:active {
+    animation: button-press 0.3s ease-in-out;
+}
+@keyframes button-hover {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(1); }
+}
+@keyframes button-press {
+    0% { transform: scale(1); box-shadow: 0 0 0 rgba(0, 0, 0, 0); }
+    30% { transform: scale(0.95); box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+    60% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
+    100% { transform: scale(1); box-shadow: 0 0 0 rgba(0, 0, 0, 0); }
+}
+/* Visible states */
+.visible {
+    opacity: 1 !important;
+    transform: translateY(0) rotate(0) scale(1) !important;
+}
+/* Light theme (default) */
+body.light {
+    color: #000;
+}
+body.light .calculator {
+    background-color: white;
+    border: 1px solid #000;
+}
+body.light .display {
+    background-color: #f9f9f9;
+    border: 1px solid #000;
+    color: #000;
+}
+body.light button {
+    background-color: #e0e0e0;
+    border: 1px solid #000;
+    color: #000;
+}
+body.light button:hover {
+    background-color: #d0d0d0;
+}
+body.light button.operator {
+    background-color: #ff9500;
+    color: white;
+    border: 1px solid #000;
+}
+body.light button.operator:hover {
+    background-color: #e08900;
+}
+body.light button.equals {
+    background-color: #4cd964;
+    color: white;
+    border: 1px solid #000;
+}
+body.light button.equals:hover {
+    background-color: #3cb853;
+}
+body.light button.clear {
+    background-color: #ff3b30;
+    color: white;
+    border: 1px solid #000;
+}
+body.light button.clear:hover {
+    background-color: #e03228;
+}
+body.light button.sci {
+    background-color: #007aff;
+    color: white;
+    border: 1px solid #000;
+}
+body.light button.sci:hover {
+    background-color: #0062cc;
+}
+/* Dark theme */
+body.dark {
+    color: #fff;
+}
+body.dark .calculator {
+    background-color: #333;
+    border: 1px solid #fff;
+}
+body.dark .display {
+    background-color: #444;
+    border: 1px solid #fff;
+    color: #fff;
+}
+body.dark button {
+    background-color: #555;
+    border: 1px solid #fff;
+    color: #fff;
+}
+body.dark button:hover {
+    background-color: #666;
+}
+body.dark button.operator {
+    background-color: #ff9500;
+    color: white;
+    border: 1px solid #fff;
+}
+body.dark button.operator:hover {
+    background-color: #e08900;
+}
+body.dark button.equals {
+    background-color: #4cd964;
+    color: white;
+    border: 1px solid #fff;
+}
+body.dark button.equals:hover {
+    background-color: #3cb853;
+}
+body.dark button.clear {
+    background-color: #ff3b30;
+    color: white;
+    border: 1px solid #fff;
+}
+body.dark button.clear:hover {
+    background-color: #e03228;
+}
+body.dark button.sci {
+    background-color: #007aff;
+    color: white;
+    border: 1px solid #fff;
+}
+body.dark button.sci:hover {
+    background-color: #0062cc;
+}
+/* Animation for display on calculate */
+@keyframes calculate-glow {
+    0% { box-shadow: 0 0 0 rgba(76, 217, 100, 0); }
+    50% { box-shadow: 0 0 20px rgba(76, 217, 100, 0.8); }
+    100% { box-shadow: 0 0 0 rgba(76, 217, 100, 0); }
+}
+.glow {
+    animation: calculate-glow 0.5s ease-in-out;
+}
+#toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+#toast.show {
+    opacity: 1;
+}
