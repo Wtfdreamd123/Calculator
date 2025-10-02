@@ -24,6 +24,7 @@ function backspace() {
 function calculate() {
     const expression = display.value;
     try {
+        // Replace ^ with ** for exponentiation if needed, but since we use ** directly, it's fine
         const result = eval(expression);
         display.value = result;
         addToHistory(`${expression} = ${result}`);
@@ -75,7 +76,7 @@ function handleButtonClick(action) {
     action();
 }
 
-// Enhanced Keyboard support with more keys
+// Enhanced Keyboard support with more keys, including scientific
 document.addEventListener('keydown', (event) => {
     const key = event.key;
     if (/^[0-9]$/.test(key)) {
@@ -100,7 +101,9 @@ document.addEventListener('keydown', (event) => {
         handleButtonClick(backspace);
     } else if (key === 'Delete' || key === 'c' || key === 'C') {
         handleButtonClick(clearDisplay);
-    }
+    } else if (key.toLowerCase() === 's' && event.ctrlKey) { // Ctrl+S for sin as example
+        handleButtonClick(() => appendToDisplay('Math.sin('));
+    } // Add more if needed
 });
 
 // Copy to clipboard on double click (unique feature)
@@ -135,7 +138,7 @@ window.addEventListener('DOMContentLoaded', () => {
     buttons.forEach((btn, index) => {
         setTimeout(() => {
             btn.classList.add('visible');
-        }, 1000 + index * 80); // Faster stagger
+        }, 1000 + index * 60); // Slightly faster stagger for more buttons
     });
 });
 
