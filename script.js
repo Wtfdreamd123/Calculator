@@ -7,6 +7,7 @@ const calculator = document.querySelector('.calculator');
 const calcDisplay = document.querySelector('.display');
 const buttons = document.querySelectorAll('.buttons button');
 const toast = document.getElementById('toast');
+const currentTimeElem = document.getElementById('current-time');
 let calculationHistory = [];
 
 function appendToDisplay(value) {
@@ -24,7 +25,6 @@ function backspace() {
 function calculate() {
     const expression = display.value;
     try {
-        // Replace ^ with ** for exponentiation if needed, but since we use ** directly, it's fine
         const result = eval(expression);
         display.value = result;
         addToHistory(`${expression} = ${result}`);
@@ -76,7 +76,7 @@ function handleButtonClick(action) {
     action();
 }
 
-// Enhanced Keyboard support with more keys, including scientific
+// Enhanced Keyboard support with more keys
 document.addEventListener('keydown', (event) => {
     const key = event.key;
     if (/^[0-9]$/.test(key)) {
@@ -101,9 +101,7 @@ document.addEventListener('keydown', (event) => {
         handleButtonClick(backspace);
     } else if (key === 'Delete' || key === 'c' || key === 'C') {
         handleButtonClick(clearDisplay);
-    } else if (key.toLowerCase() === 's' && event.ctrlKey) { // Ctrl+S for sin as example
-        handleButtonClick(() => appendToDisplay('Math.sin('));
-    } // Add more if needed
+    }
 });
 
 // Copy to clipboard on double click (unique feature)
@@ -116,6 +114,14 @@ display.addEventListener('dblclick', () => {
         console.error('Failed to copy: ', err);
     });
 });
+
+// Update current time every second
+function updateCurrentTime() {
+    const now = new Date();
+    currentTimeElem.textContent = now.toLocaleString('ru-RU', { dateStyle: 'short', timeStyle: 'short' });
+}
+setInterval(updateCurrentTime, 1000);
+updateCurrentTime();
 
 // Complex onload animation using JavaScript
 window.addEventListener('DOMContentLoaded', () => {
@@ -138,7 +144,7 @@ window.addEventListener('DOMContentLoaded', () => {
     buttons.forEach((btn, index) => {
         setTimeout(() => {
             btn.classList.add('visible');
-        }, 1000 + index * 60); // Slightly faster stagger for more buttons
+        }, 1000 + index * 80); // Faster stagger
     });
 });
 

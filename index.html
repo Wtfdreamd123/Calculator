@@ -1,56 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
+    <title>Калькулятор</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="light">
-    <button class="theme-toggle">Светлая</button>
-    
+    <div id="app-header">
+        <div id="title">
+            <span class="icon">🖩</span> Калькулятор
+        </div>
+        <div id="current-time"></div>
+    </div>
+
+    <button class="theme-toggle" onclick="toggleTheme()">Светлая</button>
+
     <div class="calculator">
         <div class="display-container">
-            <div id="history" class="history"></div>
             <input type="text" id="display" class="display" readonly>
+            <div id="history" class="history"></div>
         </div>
-        
         <div class="buttons">
-            <button class="sci" onclick="appendToDisplay('Math.sqrt(')">√</button>
-            <button class="clear" onclick="clearDisplay()">C</button>
-            <button onclick="backspace()">←</button>
-            <button class="operator" onclick="appendToDisplay('/')">/</button>
-            <button class="operator" onclick="appendToDisplay('*')">*</button>
-
-            <button class="sci" onclick="appendToDisplay('Math.sin(')">sin</button>
-            <button onclick="appendToDisplay('7')">7</button>
-            <button onclick="appendToDisplay('8')">8</button>
-            <button onclick="appendToDisplay('9')">9</button>
-            <button class="operator" onclick="appendToDisplay('-')">-</button>
-
-            <button class="sci" onclick="appendToDisplay('Math.cos(')">cos</button>
-            <button onclick="appendToDisplay('4')">4</button>
-            <button onclick="appendToDisplay('5')">5</button>
-            <button onclick="appendToDisplay('6')">6</button>
-            <button class="operator" onclick="appendToDisplay('+')">+</button>
-
-            <button class="sci" onclick="appendToDisplay('Math.tan(')">tan</button>
-            <button onclick="appendToDisplay('1')">1</button>
-            <button onclick="appendToDisplay('2')">2</button>
-            <button onclick="appendToDisplay('3')">3</button>
-            <button onclick="appendToDisplay('(')">(</button>
-
-            <button class="sci" onclick="appendToDisplay('Math.log(')">log</button>
-            <button onclick="appendToDisplay('0')">0</button>
-            <button onclick="appendToDisplay('.')">.</button>
-            <button onclick="appendToDisplay(')')">)</button>
-            <button class="equals" onclick="calculate()">=</button>
-
-            <button class="sci" onclick="appendToDisplay('Math.PI')">π</button>
-            <button class="sci" onclick="appendToDisplay('Math.E')">e</button>
-            <button class="sci" onclick="appendToDisplay('**')">^</button>
-            <button class="sci" onclick="appendToDisplay('Math.pow(')">pow</button>
-            <button class="sci" onclick="appendToDisplay('Math.exp(')">exp</button>
+            <button class="clear" onclick="handleButtonClick(clearDisplay)">C</button>
+            <button onclick="handleButtonClick(backspace)">←</button>
+            <button class="operator" onclick="handleButtonClick(() => appendToDisplay('/'))">/</button>
+            <button class="operator" onclick="handleButtonClick(() => appendToDisplay('*'))">*</button>
+            <button onclick="handleButtonClick(() => appendToDisplay('7'))">7</button>
+            <button onclick="handleButtonClick(() => appendToDisplay('8'))">8</button>
+            <button onclick="handleButtonClick(() => appendToDisplay('9'))">9</button>
+            <button class="operator" onclick="handleButtonClick(() => appendToDisplay('-'))">-</button>
+            <button onclick="handleButtonClick(() => appendToDisplay('4'))">4</button>
+            <button onclick="handleButtonClick(() => appendToDisplay('5'))">5</button>
+            <button onclick="handleButtonClick(() => appendToDisplay('6'))">6</button>
+            <button class="operator" onclick="handleButtonClick(() => appendToDisplay('+'))">+</button>
+            <button onclick="handleButtonClick(() => appendToDisplay('1'))">1</button>
+            <button onclick="handleButtonClick(() => appendToDisplay('2'))">2</button>
+            <button onclick="handleButtonClick(() => appendToDisplay('3'))">3</button>
+            <button onclick="handleButtonClick(() => appendToDisplay('('))">(</button>
+            <button onclick="handleButtonClick(() => appendToDisplay('0'))">0</button>
+            <button onclick="handleButtonClick(() => appendToDisplay('.'))">.</button>
+            <button onclick="handleButtonClick(() => appendToDisplay(')'))">)</button>
+            <button class="equals" onclick="handleButtonClick(calculate)">=</button>
         </div>
     </div>
 
