@@ -61,8 +61,8 @@ function playClick() {
     const gainNode = audioCtx.createGain();
     oscillator.connect(gainNode);
     gainNode.connect(audioCtx.destination);
-    oscillator.type = 'sine'; // Changed to sine for smoother sound
-    oscillator.frequency.value = 800; // Adjusted frequency
+    oscillator.type = 'sine';
+    oscillator.frequency.value = 800;
     gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
     gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
     oscillator.start();
